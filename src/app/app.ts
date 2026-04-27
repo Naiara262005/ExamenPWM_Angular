@@ -4,6 +4,7 @@ import { Base } from './components/base/base';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet, Base],
   templateUrl: './app.html',
   styleUrl: './app.css'

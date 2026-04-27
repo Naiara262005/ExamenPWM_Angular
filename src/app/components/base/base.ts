@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 @Component({
   selector: 'app-base',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './base.html',
   styleUrl: './base.css'
