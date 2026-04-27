@@ -2,11 +2,15 @@ import { Injectable, Injector, runInInjectionContext } from '@angular/core';
 import { Firestore, collection, collectionData, addDoc, doc, updateDoc, deleteDoc, query } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
-export class BaseRelacionalService {
-  
-  // TODO: [EXAMEN] Cambiar por el nombre de la colección real (ej: 'grades' o 'tasks')
-  private dbPath = 'coleccion_relacional'; 
+
+import { Employee } from '../models/employee.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EmployeeService {
+
+  private dbPath = 'employees';
 
   constructor(private firestore: Firestore, private injector: Injector) {}
 
@@ -18,16 +22,18 @@ export class BaseRelacionalService {
     });
   }
 
-  create(data: any) {
+
+  create(data: Employee) {
     const colRef = collection(this.firestore, this.dbPath);
     return addDoc(colRef, data);
   }
 
-  update(id: string, data: any) {
+  update(id: string, data: Employee) {
     const docRef = doc(this.firestore, `${this.dbPath}/${id}`);
-    return updateDoc(docRef, data);
+    return updateDoc(docRef, data as any);
   }
 
+  // 4. BORRAR (DELETE)
   delete(id: string) {
     const docRef = doc(this.firestore, `${this.dbPath}/${id}`);
     return deleteDoc(docRef);

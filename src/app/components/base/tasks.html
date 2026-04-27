@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-5">
+      <h3>Gestión Relacional</h3>
+      <form [formGroup]="miFormulario" (ngSubmit)="guardar()">
+
+        <div class="mb-3">
+          <label class="form-label">Empleados</label>
+          <select class="form-select" formControlName="projectId">
+            <option value="">-- Seleccione --</option>
+
+            <option *ngFor="let p1 of listaEmployees" [value]="p1.id">{{ p1.name }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Proyectos</label>
+          <select class="form-select" formControlName="employeeId">
+            <option value="">-- Seleccione --</option>
+            <option *ngFor="let p2 of listaProjects" [value]="p2.id">{{ p2.name }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Tareas</label>
+          <input type="text" class="form-control" formControlName="task">
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid">
+          {{ idEnEdicion ? 'Actualizar' : 'Añadir' }}
+        </button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="limpiar()">Limpiar</button>
+      </form>
+    </div>
+
+    <div class="col-md-7">
+      <h3>Lista de Registros</h3>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Empleados</th>
+          <th>Proyectos</th>
+          <th>Tareas</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of listaTasks">
+          <td>{{ item.employeeName }}</td>
+          <td>{{ item.projectName }}</td>
+          <td>{{ item.task }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm me-1" (click)="editar(item)">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="eliminar(item.id)">Borrar</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
