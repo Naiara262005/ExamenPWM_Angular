@@ -54,7 +54,6 @@ export class Projects implements OnInit {
     this.limpiar();
   }
 
-  // TODO: [EXAMEN] 8. Cambiar 'any' por tu modelo (Ej: item: Student)
   editar(item: any) {
     this.idEnEdicion = item.id;
     this.miFormulario.patchValue(item);

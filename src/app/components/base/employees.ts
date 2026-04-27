@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-// Ejemplo:
 import { EmployeeService } from '../../services/employee.service';
 import { Employee } from '../../models/employee.model';
 
@@ -55,7 +54,6 @@ export class Employees implements OnInit {
     this.limpiar();
   }
 
-  // TODO: [EXAMEN] 8. Cambiar 'any' por tu modelo (Ej: item: Student)
   editar(item: any) {
     this.idEnEdicion = item.id;
     this.miFormulario.patchValue(item);

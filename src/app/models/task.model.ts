@@ -1,7 +1,6 @@
 
 export interface Task {
-  id?: string; // El ID de Firebase, lo dejamos opcional con el '?'
-
+  id?: string;
   projectId: string;
   employeeId: string;
 }

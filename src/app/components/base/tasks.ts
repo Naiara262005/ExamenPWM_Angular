@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-// TODO: [EXAMEN] 1. Importar los 3 servicios reales aquí cuando los crees
 import { TaskService } from '../../services/task.service'; // Ej: GradeService
 import { EmployeeService as ServicioPadre1 } from '../../services/employee.service'; // Ej: StudentService as ServicioPadre1
 import { ProjectService as ServicioPadre2 } from '../../services/project.service'; // Ej: SubjectService as ServicioPadre2
@@ -45,7 +44,6 @@ export class Tasks implements OnInit {
     // Cargar la tabla principal
     this.relacionService.getAll().subscribe(datos => {
       this.listaTasks = datos.map(item => {
-        // TODO: [EXAMEN] 3. Asegúrate de que item.fk_padre1 y s.nombre coinciden con tus modelos
         const p1 = this.listaEmployees.find(s => s.id === item.projectId);
         const p2 = this.listaProjects.find(s => s.id === item.employeeId);
 
@@ -57,7 +55,7 @@ export class Tasks implements OnInit {
       });
     });
   }
-  // nada
+
   guardar() {
     if (this.miFormulario.invalid) return;
     if (this.idEnEdicion) {
@@ -67,12 +65,12 @@ export class Tasks implements OnInit {
     }
     this.limpiar();
   }
-  // nada
+
   editar(item: any) {
     this.idEnEdicion = item.id;
     this.miFormulario.patchValue(item);
   }
-  // nada
+
   eliminar(id: any) { this.relacionService.delete(id); }
   limpiar() { this.miFormulario.reset(); this.idEnEdicion = null; }
 }
