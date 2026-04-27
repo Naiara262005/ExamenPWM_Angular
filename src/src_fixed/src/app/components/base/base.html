@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <div class="row">
+
+    <div class="col-md-6">
+      <h3 class="mb-4">Gestión de [Entidad]</h3>
+      
+      <form [formGroup]="miFormulario" (ngSubmit)="guardar()">
+
+        <div class="mb-3">
+          <label class="form-label">Nombre del Campo</label>
+          <input type="text" formControlName="PON_AQUI_EL_NOMBRE_DEL_CONTROL" class="form-control">
+          
+          <small class="text-danger" *ngIf="miFormulario.get('PON_AQUI_EL_NOMBRE_DEL_CONTROL')?.invalid && miFormulario.get('PON_AQUI_EL_NOMBRE_DEL_CONTROL')?.touched">
+            Este campo es obligatorio.
+          </small>
+        </div>
+
+        <button type="submit" [disabled]="miFormulario.invalid" class="btn btn-primary">
+          {{ idEnEdicion ? 'Actualizar' : 'Agregar' }}
+        </button>
+        <button type="button" (click)="limpiar()" class="btn btn-secondary ms-2">Limpiar</button>
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <h3 class="mb-4">Lista de [Entidad]</h3>
+      
+      <ul class="list-group">
+        <li *ngFor="let item of listaDatos" class="list-group-item d-flex justify-content-between align-items-center">
+          
+          <span>{{ item.PROPIEDAD_A_MOSTRAR }}</span>
+
+          <div>
+            <button class="btn btn-warning btn-sm me-2" (click)="editar(item)">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="eliminar(item.id)">Borrar</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

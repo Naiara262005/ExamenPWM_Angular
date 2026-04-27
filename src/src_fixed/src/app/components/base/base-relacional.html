@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-5">
+      <h3>Gestión Relacional</h3>
+      <form [formGroup]="miFormulario" (ngSubmit)="guardar()">
+        
+        <div class="mb-3">
+          <label class="form-label">Seleccionar Padre 1</label>
+          <select class="form-select" formControlName="fk_padre1">
+            <option value="">-- Seleccione --</option>
+            
+            <option *ngFor="let p1 of listaPadre1" [value]="p1.id">{{ p1.nombre }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Seleccionar Padre 2</label>
+          <select class="form-select" formControlName="fk_padre2">
+            <option value="">-- Seleccione --</option>
+            <option *ngFor="let p2 of listaPadre2" [value]="p2.id">{{ p2.nombre }}</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Campo Extra</label>
+          <input type="text" class="form-control" formControlName="campo_extra">
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid">
+          {{ idEnEdicion ? 'Actualizar' : 'Añadir' }}
+        </button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="limpiar()">Limpiar</button>
+      </form>
+    </div>
+
+    <div class="col-md-7">
+      <h3>Lista de Registros</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Padre 1</th>
+            <th>Padre 2</th>
+            <th>Dato Extra</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listaRelaciones">
+            <td>{{ item.nombre_padre1 }}</td>
+            <td>{{ item.nombre_padre2 }}</td>
+            <td>{{ item.campo_extra }}</td>
+            <td>
+              <button class="btn btn-warning btn-sm me-1" (click)="editar(item)">Editar</button>
+              <button class="btn btn-danger btn-sm" (click)="eliminar(item.id)">Borrar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
